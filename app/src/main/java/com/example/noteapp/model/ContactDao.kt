@@ -31,4 +31,10 @@ interface ContactDao {
     @Query("SELECT * FROM contacts WHERE name LIKE :query || '%'")
     fun searchUzWords(query: String): List<Note_model>
 
+    @Query("SELECT * FROM contacts ORDER BY dead_line ASC")
+    fun listOrderedByDeadLine():List<Note_model>
+
+    @Query("SELECT * FROM contacts ORDER BY importance DESC")
+    fun listOrderedByImportance():List<Note_model>
+
 }

@@ -16,43 +16,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:gravity="center"
             >
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                />
+
             <ImageView
                 android:clickable="true"
                 android:focusable="true"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:id="@+id/cheak"
+                android:id="@+id/order_date"
                 android:layout_marginLeft="85dp"
                 android:background="@drawable/baseline_assignment_24"
                 android:foreground="?attr/selectableItemBackground"
                 />
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                />
+
             <ImageView
                 android:layout_marginRight="50dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:id="@+id/note"
+                android:id="@+id/order_importance"
                 android:foreground="?attr/selectableItemBackground"
                 android:layout_marginLeft="30dp"
                 android:background="@drawable/check_square_svgrepo_com__2_"
                 />
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                />
+
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"

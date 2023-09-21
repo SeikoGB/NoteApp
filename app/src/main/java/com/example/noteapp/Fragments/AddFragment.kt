@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment
 import com.example.noteapp.R
 import com.example.noteapp.databse.Database
 import com.example.noteapp.model.Note_model
+import com.google.android.material.button.MaterialButton
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -33,7 +34,7 @@ class AddFragment:Fragment() {
     private lateinit var add_message:Button
 
     private lateinit var list: ArrayList<Note_model>
-
+    private lateinit var add_time:MaterialButton
     private lateinit var contact:Note_model
 
 
@@ -59,11 +60,17 @@ class AddFragment:Fragment() {
         name2=view.findViewById(R.id.edit_text)
         date=view.findViewById(R.id.date)
         back=view.findViewById(R.id.back)
-
+        add_time=view.findViewById(R.id.add_time)
         back.setOnClickListener {
             parentFragmentManager.beginTransaction()
                 .setReorderingAllowed(true)
                 .replace(R.id.container,MainFragment())
+                .commit()
+        }
+        add_time.setOnClickListener{
+            parentFragmentManager.beginTransaction()
+                .setReorderingAllowed(true)
+                .replace(R.id.container,AddTimeFragment())
                 .commit()
         }
 
@@ -93,7 +100,7 @@ class AddFragment:Fragment() {
 
 
             Toast.makeText(requireContext(),"Saved",Toast.LENGTH_SHORT).show()
-            contact= Note_model(note_name = name1.text.toString(), note_text = name2.text.toString(), date_item = date.text.toString())
+            contact= Note_model(note_name = name1.text.toString(), note_text = name2.text.toString(), date_item = date.text.toString(), dead_line = "", importance = 0)
 
             val name=arguments?.getString("name1")
             if (name==null && !name1.text.toString().isNullOrEmpty()){

@@ -11,7 +11,7 @@ data class Note_model (
     val id:Long=0L,
     @ColumnInfo("name")
     var note_name:String,
-
-
     var note_text:String,
+    var importance:Int,
+    var dead_line:String,
     var date_item:String)
