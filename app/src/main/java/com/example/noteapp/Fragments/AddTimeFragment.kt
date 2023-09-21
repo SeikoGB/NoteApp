@@ -50,6 +50,9 @@ class AddTimeFragment : Fragment() {
             Toast.makeText(requireContext(), dayOfMonth.toString() + "/" + month.toString() + "/" + year.toString(), Toast.LENGTH_LONG).show();
             date = dayOfMonth.toString() + "/" + month.toString() + "/" + year.toString()
         }
+        binding.save.setOnClickListener {
+
+        }
         binding.reschedule!!.setOnClickListener {
             openTimePicker()
         }

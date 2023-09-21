@@ -18,6 +18,7 @@ import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import com.example.noteapp.R
 import com.example.noteapp.databse.Database
+import com.example.noteapp.model.Importance
 import com.example.noteapp.model.Note_model
 import com.google.android.material.button.MaterialButton
 import java.text.SimpleDateFormat
@@ -39,7 +40,10 @@ class AddFragment:Fragment() {
     private lateinit var list: ArrayList<Note_model>
     private lateinit var add_time:Button
     private lateinit var contact:Note_model
-
+    private lateinit var high:Button
+    private lateinit var midle:Button
+    private lateinit var low:Button
+    private lateinit var importance:TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.note_add, container, false)
@@ -59,11 +63,27 @@ class AddFragment:Fragment() {
 
         list= ArrayList(database.contactDao().getContact())
 
+        importance=view.findViewById(R.id.muhimligi)
+        high=view.findViewById(R.id.high)
+        midle=view.findViewById(R.id.middle)
+        low=view.findViewById(R.id.low)
         name1=view.findViewById(R.id.app_name)
         name2=view.findViewById(R.id.edit_text)
         date=view.findViewById(R.id.date)
         back=view.findViewById(R.id.back)
         add_time=view.findViewById(R.id.add_time)
+        high.setOnClickListener {
+            contact.importance=Importance.HIGH_IMPORTANCE.level
+            importance.text="Ota Muhim"
+        }
+        midle.setOnClickListener {
+            contact.importance=Importance.MID_IMPORTANCE.level
+            importance.text="Ortacha Muhim"
+        }
+        low.setOnClickListener {
+            contact.importance=Importance.LOW_IMPORTANCE.level
+            importance.text="Uncha Muhim emas"
+        }
         back.setOnClickListener {
             parentFragmentManager.beginTransaction()
                 .setReorderingAllowed(true)
@@ -105,7 +125,6 @@ class AddFragment:Fragment() {
 
             Toast.makeText(requireContext(),"Saved",Toast.LENGTH_SHORT).show()
             contact= Note_model(note_name = name1.text.toString(), note_text = name2.text.toString(), date_item = date.text.toString(), dead_line = "", importance = 0)
-
             val name=arguments?.getString("name1")
             if (name==null && !name1.text.toString().isNullOrEmpty()){
                 database.contactDao().insert(contact)

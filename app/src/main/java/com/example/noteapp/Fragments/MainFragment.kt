@@ -31,6 +31,9 @@ class MainFragment:Fragment(R.layout.fragment_main) {
     private lateinit var search:EditText
     private lateinit var settings:ImageView
 
+    private lateinit var orderByDate:ImageView
+    private lateinit var orderByImportance:ImageView
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,7 +45,17 @@ class MainFragment:Fragment(R.layout.fragment_main) {
         add_store = view.findViewById(R.id.add_store)
         search=view.findViewById(R.id.search)
         settings=view.findViewById(R.id.settings)
+        orderByDate=view.findViewById(R.id.order_date)
+        orderByImportance=view.findViewById(R.id.order_importance)
 
+        orderByDate.setOnClickListener {
+            list= database.contactDao().listOrderedByDeadLine() as ArrayList<Note_model>
+            adapter.notifyDataSetChanged()
+        }
+        orderByImportance.setOnClickListener {
+            list= database.contactDao().listOrderedByImportance() as ArrayList<Note_model>
+            adapter.notifyDataSetChanged()
+        }
         settings.setOnClickListener {
             showPopupMenu()
         }
