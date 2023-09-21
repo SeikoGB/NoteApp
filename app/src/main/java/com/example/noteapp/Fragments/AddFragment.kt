@@ -24,8 +24,11 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
+private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM2 = "param2"
 class AddFragment:Fragment() {
 
+    private var param1: Note_model? = null
     private lateinit var name1:EditText
     private lateinit var name2:EditText
     private lateinit var date:TextView
@@ -70,7 +73,7 @@ class AddFragment:Fragment() {
         add_time.setOnClickListener{
             parentFragmentManager.beginTransaction()
                 .setReorderingAllowed(true)
-                .replace(R.id.container,AddTimeFragment())
+                .replace(R.id.container,AddTimeFragment.newInstance(contact,false))
                 .addToBackStack("AddFragment")
                 .commit()
         }
@@ -149,6 +152,24 @@ class AddFragment:Fragment() {
             }
         }
         popupMenu.show()
+    }
+    companion object {
+        /**
+         * Use this factory method to create a new instance of
+         * this fragment using the provided parameters.
+         *
+         * @param param1 Parameter 1.
+         * @param param2 Parameter 2.
+         * @return A new instance of fragment AddTimeFragment.
+         */
+        // TODO: Rename and change types and number of parameters
+        @JvmStatic
+        fun newInstance(param1: Note_model) =
+            AddTimeFragment().apply {
+                arguments = Bundle().apply {
+                    putSerializable(ARG_PARAM1, param1)
+                }
+            }
     }
 
 }
