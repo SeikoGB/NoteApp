@@ -1,5 +1,6 @@
 package com.example.noteapp.model
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -8,4 +9,9 @@ import androidx.room.PrimaryKey
 data class Note_model (
     @PrimaryKey(autoGenerate = true)
     val id:Long=0L,
-    var note_name:String, var note_text:String, var date_item:String)
+    @ColumnInfo("name")
+    var note_name:String,
+
+
+    var note_text:String,
+    var date_item:String)

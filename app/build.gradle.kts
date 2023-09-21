@@ -54,4 +54,11 @@ dependencies {
 
     implementation ("androidx.room:room-runtime:2.5.2")
     kapt ("androidx.room:room-compiler:2.5.2")
+
+    implementation ("androidx.fragment:fragment-ktx:1.6.1")
+
+    implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
+    implementation ("androidx.recyclerview:recyclerview:1.3.1")
+
+    implementation ("com.google.android.material:material:1.4.0")
 }

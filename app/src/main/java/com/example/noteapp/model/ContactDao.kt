@@ -27,4 +27,8 @@ interface ContactDao {
     @Query("DELETE FROM contacts")
     fun nukeTable()
 
+
+    @Query("SELECT * FROM contacts WHERE name LIKE :query || '%'")
+    fun searchUzWords(query: String): List<Note_model>
+
 }
