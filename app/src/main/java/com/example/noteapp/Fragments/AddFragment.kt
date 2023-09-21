@@ -34,7 +34,7 @@ class AddFragment:Fragment() {
     private lateinit var add_message:Button
 
     private lateinit var list: ArrayList<Note_model>
-    private lateinit var add_time:MaterialButton
+    private lateinit var add_time:Button
     private lateinit var contact:Note_model
 
 
@@ -71,6 +71,7 @@ class AddFragment:Fragment() {
             parentFragmentManager.beginTransaction()
                 .setReorderingAllowed(true)
                 .replace(R.id.container,AddTimeFragment())
+                .addToBackStack("AddFragment")
                 .commit()
         }
 
