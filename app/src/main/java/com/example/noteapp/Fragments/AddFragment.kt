@@ -39,7 +39,7 @@ class AddFragment:Fragment() {
 
     private lateinit var list: ArrayList<Note_model>
     private lateinit var add_time:Button
-    private lateinit var contact:Note_model
+    private  var contact=Note_model(note_name = "", note_text = "", importance = 0, dead_line = "", date_item = "")
     private lateinit var high:Button
     private lateinit var midle:Button
     private lateinit var low:Button
@@ -124,7 +124,9 @@ class AddFragment:Fragment() {
 
 
             Toast.makeText(requireContext(),"Saved",Toast.LENGTH_SHORT).show()
-            contact= Note_model(note_name = name1.text.toString(), note_text = name2.text.toString(), date_item = date.text.toString(), dead_line = "", importance = 0)
+            contact.note_name=name1.text.toString()
+            contact.note_text=name2.text.toString()
+            contact.date_item=date.text.toString()
             val name=arguments?.getString("name1")
             if (name==null && !name1.text.toString().isNullOrEmpty()){
                 database.contactDao().insert(contact)
