@@ -49,11 +49,15 @@ class MainFragment:Fragment(R.layout.fragment_main) {
         orderByImportance=view.findViewById(R.id.order_importance)
 
         orderByDate.setOnClickListener {
-            list= database.contactDao().listOrderedByDeadLine() as ArrayList<Note_model>
+            data= database.contactDao().listOrderedByDeadLine()
+            list.clear()
+            list.addAll(data)
             adapter.notifyDataSetChanged()
         }
         orderByImportance.setOnClickListener {
-            list= database.contactDao().listOrderedByImportance() as ArrayList<Note_model>
+            data= database.contactDao().listOrderedByImportance()
+            list.clear()
+            list.addAll(data)
             adapter.notifyDataSetChanged()
         }
         settings.setOnClickListener {

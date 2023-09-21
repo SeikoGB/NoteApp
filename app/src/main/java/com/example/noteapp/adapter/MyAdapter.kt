@@ -1,11 +1,16 @@
 package com.example.noteapp.adapter
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
+import com.example.noteapp.R
 import com.example.noteapp.databinding.ItemLayoutBinding
 import com.example.noteapp.model.Note_model
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
 
 class ContactAdapter(private val data: ArrayList<Note_model>,
 
@@ -17,7 +22,8 @@ class ContactAdapter(private val data: ArrayList<Note_model>,
     inner class Vh(val itemContactBinding: ItemLayoutBinding)
         :RecyclerView.ViewHolder(itemContactBinding.root){
 
-        @SuppressLint("SetTextI18n")
+        @RequiresApi(Build.VERSION_CODES.O)
+        @SuppressLint("SetTextI18n", "ResourceAsColor")
         fun  onBind(contact: Note_model, position:Int){
 
             itemContactBinding.apply {
@@ -26,8 +32,22 @@ class ContactAdapter(private val data: ArrayList<Note_model>,
                 text123.text=contact.note_text
                 date123.text=contact.date_item
 
+
+
                 if (contact.note_text.length>15){
                     text123.text=contact.note_text.substring(0,15)
+                }
+                when(contact.importance){
+                    1->{
+                        muhim.text="Uncha Muhim Emas"
+                    }
+                    2->{
+                        muhim.text="Ortacha Muhim"
+                    }
+                    3->{
+                        muhim.text="Ota Muhim"
+                    }
+
                 }
                 delete.setOnClickListener { onDeleteClick.invoke(contact,position) }
             }

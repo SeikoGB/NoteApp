@@ -31,29 +31,17 @@
             app:layout_constraintVertical_bias="0.094" />
 
         <Button
+            android:text="Save"
+            android:textSize="18sp"
             android:id="@+id/save"
-            android:layout_width="180dp"
-            android:layout_height="80dp"
-            android:layout_marginHorizontal="24dp"
-
-            android:backgroundTint="#C2CBDC"
-            android:clickable="true"
-            android:drawableEnd="@drawable/send"
-            android:fontFamily="@font/actor"
-            android:text="Save date"
-            android:textColor="#24a19c"
-            android:textSize="20dp"
-            app:cornerRadius="20dp"
-            app:icon="@drawable/send"
-            app:iconGravity="end"
-            app:iconSize="20dp"
-            app:iconTint="#24a19c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.069"
+            app:layout_constraintEnd_toStartOf="@+id/reschedule"
+            app:layout_constraintHorizontal_bias="0.18"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/calendarView"
-            app:layout_constraintVertical_bias="0.8" />
+            app:layout_constraintVertical_bias="0.765" />
 
         <Button
             android:id="@+id/reschedule"

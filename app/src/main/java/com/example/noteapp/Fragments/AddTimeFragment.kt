@@ -8,7 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.annotation.RequiresApi
+import androidx.core.os.bundleOf
 import com.example.noteapp.R
 import com.example.noteapp.databinding.FragmentAddTimeBinding
 import com.example.noteapp.model.Note_model
@@ -50,14 +52,23 @@ class AddTimeFragment : Fragment() {
             Toast.makeText(requireContext(), dayOfMonth.toString() + "/" + month.toString() + "/" + year.toString(), Toast.LENGTH_LONG).show();
             date = dayOfMonth.toString() + "/" + month.toString() + "/" + year.toString()
         }
-        binding.save.setOnClickListener {
 
-        }
-        binding.reschedule!!.setOnClickListener {
-            openTimePicker()
-        }
+//        binding.reschedule!!.setOnClickListener {
+//            openTimePicker()
+//        }
         binding.save.setOnClickListener {
-            parentFragmentManager.beginTransaction().replace(R.id.container,AddFragment())
+            param1!!.dead_line=date.toString()
+            var note=param1!!
+            parentFragmentManager.beginTransaction().setReorderingAllowed(true).replace(R.id.container,AddFragment::class.java,
+                bundleOf("date" to date.toString())
+            ).commit()
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            parentFragmentManager.beginTransaction()
+                .setReorderingAllowed(true)
+                .replace(R.id.container,AddFragment())
+                .commit()
         }
 
         return binding.root

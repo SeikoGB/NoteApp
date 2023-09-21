@@ -94,7 +94,6 @@ class AddFragment:Fragment() {
             parentFragmentManager.beginTransaction()
                 .setReorderingAllowed(true)
                 .replace(R.id.container,AddTimeFragment.newInstance(contact,false))
-                .addToBackStack("AddFragment")
                 .commit()
         }
 
@@ -122,17 +121,17 @@ class AddFragment:Fragment() {
 
         add_message.setOnClickListener {
 
-
             Toast.makeText(requireContext(),"Saved",Toast.LENGTH_SHORT).show()
             contact.note_name=name1.text.toString()
             contact.note_text=name2.text.toString()
             contact.date_item=date.text.toString()
+            contact.dead_line=arguments?.getString("date").toString()
+
             val name=arguments?.getString("name1")
             if (name==null && !name1.text.toString().isNullOrEmpty()){
                 database.contactDao().insert(contact)
                 parentFragmentManager.beginTransaction()
                     .setReorderingAllowed(true)
-                    .addToBackStack("MainFragment")
                     .replace(R.id.container,MainFragment())
                     .commit()
             }
@@ -140,6 +139,18 @@ class AddFragment:Fragment() {
                 database.contactDao().nukeTable()
                 val index=arguments?.getInt("index")
                 if (index!=null){
+                    when(list[index].importance){
+                        1->{
+                            importance.text="Uncha Muhim Emas"
+                        }
+                        2->{
+                            importance.text="Ortacha Muhim"
+                        }
+                        3->{
+                            importance.text="Ota Muhim"
+                        }
+
+                    }
                     list[index].note_name=name1.text.toString()
                     list[index].note_text=name2.text.toString()
                     list[index].date_item=date.text.toString()
@@ -147,11 +158,16 @@ class AddFragment:Fragment() {
                 database.contactDao().insertAll(list)
                 parentFragmentManager.beginTransaction()
                     .setReorderingAllowed(true)
-                    .addToBackStack("MainFragment")
                     .replace(R.id.container,MainFragment())
                     .commit()
             }
 
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            parentFragmentManager.beginTransaction()
+                .setReorderingAllowed(true)
+                .replace(R.id.container,MainFragment())
+                .commit()
         }
 
     }
