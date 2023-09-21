@@ -107,12 +107,17 @@ class MainFragment:Fragment(R.layout.fragment_main) {
 
                 R.id.colors -> {
                     // Handle menu item 2 click
-                    val items = arrayOf("Element 1", "Element 2", "Element 3")
+                    val items = arrayOf("item 1","item 2","item 3","item 4")
                     val checkedItem = 0 // Tanlangan element indexi
 
                     val builder = AlertDialog.Builder(requireContext())
                     builder.setTitle("Tanlangan element")
                     builder.setSingleChoiceItems(items, checkedItem) { dialog, which ->
+                        when(which){
+                            1->{
+                                search.setText("Search")
+                            }
+                        }
                         // Element tanlandikda chaqiriladi
                         // which - tanlangan element indeksi
                     }
