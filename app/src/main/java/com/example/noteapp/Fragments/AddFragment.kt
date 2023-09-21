@@ -70,7 +70,7 @@ class AddFragment:Fragment() {
         add_time.setOnClickListener{
             parentFragmentManager.beginTransaction()
                 .setReorderingAllowed(true)
-                .replace(R.id.container,AddTimeFragment())
+                .replace(R.id.container,AddTimeFragment.newInstance(contact,false))
                 .addToBackStack("AddFragment")
                 .commit()
         }

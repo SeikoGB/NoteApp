@@ -3,6 +3,7 @@ package com.example.noteapp.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 
 @Entity(tableName = "contacts")
@@ -14,4 +15,4 @@ data class Note_model (
     var note_text:String,
     var importance:Int,
     var dead_line:String,
-    var date_item:String)
+    var date_item:String) : Serializable

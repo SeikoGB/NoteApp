@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.example.noteapp.R
 import com.example.noteapp.databinding.FragmentAddTimeBinding
+import com.example.noteapp.model.Note_model
 import java.time.LocalTime
 
 // TODO: Rename parameter arguments, choose names that match
@@ -25,8 +26,8 @@ private const val ARG_PARAM2 = "param2"
  */
 class AddTimeFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var param1: Note_model? = null
+    private var param2: Boolean? = null
     var dueTime: LocalTime? = null
     var time:String? = null
     var date:String? = null
@@ -34,8 +35,8 @@ class AddTimeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            param1 = it.getSerializable(ARG_PARAM1) as Note_model
+            param2 = it.getBoolean(ARG_PARAM2)
         }
     }
 
@@ -84,11 +85,11 @@ class AddTimeFragment : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(param1: Note_model, isUpdate: Boolean) =
             AddTimeFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putSerializable(ARG_PARAM1, param1)
+                    putBoolean(ARG_PARAM2, isUpdate)
                 }
             }
     }
